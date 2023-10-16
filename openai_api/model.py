@@ -26,7 +26,7 @@ class Model:
             {"role": "user",
              "content": query}
         )
-
+        self.update_context()
         try:
             completion = openai.ChatCompletion.create(
                 model=config.MODEL,
@@ -35,3 +35,11 @@ class Model:
             return completion["choices"][0]["message"]["content"]
         except Exception as AnyOpenAIError:
             return config.OPEN_AI_ERROR_MESSAGE
+
+    def update_context(self) -> None:
+        """
+        Maintain a context as a list of no more than 10 messages
+        :return: None
+        """
+        if len(self.user_context) > 10:
+            self.user_context.pop(0)
