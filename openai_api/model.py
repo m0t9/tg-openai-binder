@@ -16,30 +16,33 @@ class Model:
         self.user_context: List[Dict[str, int]]
         self.user_context = list()
 
+    def extend_context(self, message: str, sender: str) -> None:
+        """
+        Extend context by new message
+        :param message: content of the message
+        :param sender: "user" or "assistant"
+        :return: None
+        """
+        self.user_context.append({
+            "role": sender,
+            "content": message
+        })
+        if len(self.user_context) > 10:
+            self.user_context.pop(0)
+
     def generate_answer(self, query: str) -> str:
         """
         Method to extend the user's context by new query
         :param query: incoming query
         :return: answer based on the entire context
         """
-        self.user_context.append(
-            {"role": "user",
-             "content": query}
-        )
-        self.update_context()
+        self.extend_context(query, "user")
         try:
-            completion = openai.ChatCompletion.create(
+            answer = openai.ChatCompletion.create(
                 model=config.MODEL,
                 messages=self.user_context
-            )
-            return completion["choices"][0]["message"]["content"]
+            )["choices"][0]["message"]["content"]
+            self.extend_context(answer, "assistant")
+            return answer
         except Exception as AnyOpenAIError:
             return config.OPEN_AI_ERROR_MESSAGE
-
-    def update_context(self) -> None:
-        """
-        Maintain a context as a list of no more than 10 messages
-        :return: None
-        """
-        if len(self.user_context) > 10:
-            self.user_context.pop(0)
