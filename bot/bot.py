@@ -57,4 +57,5 @@ async def main() -> None:
     Run the polling
     :return: None
     """
+    await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
