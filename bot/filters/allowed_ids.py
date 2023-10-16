@@ -10,7 +10,7 @@ class AllowedIdFilter(Filter):
     is able to interact with bot
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.allowed_ids = config.ALLOWED_IDS
 
     async def __call__(self, message: Message) -> bool:
