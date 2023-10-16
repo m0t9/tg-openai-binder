@@ -1,14 +1,14 @@
-import configparser
+from dotenv import load_dotenv
+from os import getenv
 
-parser = configparser.ConfigParser()
-parser.read('.cfg')
+load_dotenv()
 
-OPEN_AI_API_KEY = parser.get('OPEN_AI', 'api_key')
-MODEL = parser.get('OPEN_AI', 'model')
+OPEN_AI_API_KEY = getenv('API_KEY')
+MODEL = getenv('MODEL')
 
-BOT_TOKEN = parser.get('BOT', 'token')
-PLACEHOLDER = parser.get('BOT', 'placeholder')
-CLEAR_CONTEXT_ANSWER = parser.get('BOT', 'clear_context_answer')
-ALLOWED_IDS = list(map(lambda x: int(x.strip()), parser.get('BOT', 'allowed_ids').split(',')))
-START_PLACEHOLDER = parser.get('BOT', 'start_placeholder')
-OPEN_AI_ERROR_MESSAGE = parser.get('BOT', 'open_ai_error')
+BOT_TOKEN = getenv('TOKEN')
+PLACEHOLDER = getenv('PLACEHOLDER')
+CLEAR_CONTEXT_ANSWER = getenv('CLEAR_CONTEXT_ANSWER')
+ALLOWED_IDS = list(map(lambda x: int(x.strip()), getenv('ALLOWED_IDS').split(',')))
+START_PLACEHOLDER = getenv('START_PLACEHOLDER')
+OPEN_AI_ERROR_MESSAGE = getenv('OPEN_AI_ERROR')
