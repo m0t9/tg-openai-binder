@@ -3,12 +3,13 @@ import typing
 from aiogram import Bot, Dispatcher
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
+from aiogram.enums import ParseMode
 
 import config
 import openai_api
 from bot.filters import AllowedIdFilter
 
-bot = Bot(token=config.BOT_TOKEN)
+bot = Bot(token=config.BOT_TOKEN, parse_mode=ParseMode.MARKDOWN)
 dp = Dispatcher()
 
 user_contexts: typing.Dict[int, openai_api.Model]
