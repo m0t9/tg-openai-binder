@@ -1,0 +1,7 @@
+version: '3'
+services:
+  open-ai-bind:
+    build: .
+    restart: always
+    volumes:
+      - .:/app
