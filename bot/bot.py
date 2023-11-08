@@ -19,7 +19,8 @@ user_contexts = dict()
 @dp.message(CommandStart(), AllowedIdFilter())
 async def start_respond(message: Message) -> None:
     """
-    Handler for '/start' commands
+    Handler for '/start' commands.
+    Sends START_PLACEHOLDER message
     :param message: message object
     :return: None
     """
@@ -28,6 +29,12 @@ async def start_respond(message: Message) -> None:
 
 @dp.message(Command('delete_context'))
 async def clear_context(message: Message) -> None:
+    """
+    Handler for '/delete_context' command.
+    Deletes the context of the conversation with user
+    :param message: message object
+    :return: None
+    """
     await message.answer(config.CLEAR_CONTEXT_ANSWER)
     if message.from_user.id in user_contexts:
         user_contexts.pop(message.from_user.id)
