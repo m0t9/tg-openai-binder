@@ -5,6 +5,8 @@ import openai
 import config
 
 openai.api_key = config.OPEN_AI_API_KEY
+if config.PROXY is not None:
+    openai.proxy = config.PROXY
 
 
 class Model:
