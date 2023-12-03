@@ -11,21 +11,28 @@ A simple Telegram bot to interact with Open AI models
 
 1. clone this repo via `git clone https://github.com/m0t9/tg-openai-binder`
 2. set your parameters in `.env` file
-   - OpenAI API key to `API_KEY`
-   - Telegram bot token to `TOKEN`
-   - list of Telegram IDs of users allowed to interact with bot to `ALLOWED_IDS`
-   - other settings
 
-     **There are also some important settings like used OpenAI `MODEL`**
+    | Parameter              | Meaning                                                                                                               |
+    |------------------------|-----------------------------------------------------------------------------------------------------------------------|
+    | `API_KEY`              | Your OpenAI API key                                                                                                   |
+    | `MODEL`                | Name of used OpenAI model                                                                                             |
+    | `PROXY`                | _Optional. Proxy server for OpenAI queries processing_                                                                |
+    | `TOKEN`                | Telegram bot token                                                                                                    |
+    | `START_PLACEHOLDER`    | Message that bot will send as response to `/start` command                                                            |
+    | `PLACEHOLDER`          | Message that bot will show while request processing                                                                   |
+    | `CLEAR_CONTEXT_ANSWER` | Message that bot will send as response to `/delete_context` command                                                   |
+    | `CONTEXT_SIZE`         | Number of the last messages in the dialogue with bot that will be considered as context. High values affect RAM usage |
+    | `OPEN_AI_ERROR`        | Message that bot will send if something goes wrong during OpenAI query processing                                     |
+    | `ALLOWED_IDS`          | List of Telegram users (separated by comma) IDs that are allowed to interact with bot                                 |
+
 3. execute `docker-compose -f docker-compose.yml -p tg-openai-binder up -d bot` in repo root directory
 
 # Interaction
-
-- `/start` to send an initial message (that you can modify in `.env`)
-
-- `/delete_context` command is intended to clear the dialogue context (start the discussion from the very beginning)
-
-- Any other message will be considered as a request to Open AI
+| Command           | Meaning                                                             |
+|-------------------|---------------------------------------------------------------------|
+| `/start`          | Start dialogue with bot. As response it sends `START_PLACEHOLDER`   |
+| `/delete_context` | Clears the dialogue context with user. Sends `CLEAR_CONTEXT_ANSWER` |
+| any other text    | Will be considered as a query to OpenAI                             |
 
 <img width="900" alt="image" src="https://github.com/m0t9/tg-openai-binder/assets/60100612/92b90a80-e34a-4e51-8551-2071c55e3cf5">
 
