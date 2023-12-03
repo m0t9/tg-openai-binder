@@ -29,7 +29,7 @@ class Model:
             "role": sender,
             "content": message
         })
-        if len(self.user_context) > 10:
+        if len(self.user_context) > config.CONTEXT_SIZE:
             self.user_context.pop(0)
 
     def generate_answer(self, query: str) -> str:
