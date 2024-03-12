@@ -17,7 +17,7 @@ A simple Telegram bot to interact with Open AI models
 2. set your parameters in `.env` file
 
    | Parameter              | Meaning                                                                                                               |
-       |------------------------|-----------------------------------------------------------------------------------------------------------------------|
+   |------------------------|-----------------------------------------------------------------------------------------------------------------------|
    | `API_KEY`              | Your OpenAI API key                                                                                                   |
    | `MODEL`                | Name of used OpenAI model                                                                                             |
    | `PROXY`                | _Optional. Proxy server for OpenAI queries processing_                                                                |
