@@ -1,3 +1,4 @@
+import logging
 from typing import List, Dict
 
 import openai
@@ -47,4 +48,5 @@ class Model:
             self.extend_context(answer, "assistant")
             return answer
         except Exception as AnyOpenAIError:
+            logging.error(f"OpenAI API exception: {AnyOpenAIError}")
             return config.OPEN_AI_ERROR_MESSAGE
