@@ -5,5 +5,7 @@ services:
       context: .
     env_file:
       - .env
+    ports:
+      - "10000:10000"
     restart:
       always
