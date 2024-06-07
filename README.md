@@ -28,12 +28,13 @@ A simple Telegram bot to interact with Open AI models
    | `CONTEXT_SIZE`         | Number of the last messages in the dialogue with bot that will be considered as context. High values affect RAM usage |
    | `OPEN_AI_ERROR`        | Message that bot will send if something goes wrong during OpenAI query processing                                     |
    | `ALLOWED_IDS`          | List of Telegram users (separated by comma) IDs that are allowed to interact with bot                                 |
+   | `ENABLE_RENDER`        | True or False. Exposes the web-server on :10000 (required for render.com free-tier web-service deployment)            |
 
 3. execute this command in repo root directory
     ```bash
     docker-compose up -d --build
     ```
-   
+
 # Interaction
 
 | Command           | Meaning                                                             |
